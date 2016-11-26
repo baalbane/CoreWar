@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 16:16:58 by ttridon           #+#    #+#             */
-/*   Updated: 2016/11/24 15:52:09 by ttridon          ###   ########.fr       */
+/*   Updated: 2016/11/26 13:20:27 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ t_label	*tmpname(int fd)
 	actu = start;
 	while (get_next_line(fd, &line))
 	{
+		if (tmp_name_strchr(line, '#'))
+			del_commentaire(line);
 		if (is_label(line))
 			actu = new_label(actu, line);
-		else if
+		else if (!is_empty(line))
 			new_function(actu, line);
+		else
+			free(line);
 	}
 	return (start);
 }
@@ -34,7 +38,7 @@ t_label	*new_label(t_label *label, char *line)
 {
 	t_label	*new;
 	new = malloc(sizeof(t_label));
-	new->line = line;
+	new->line = tmp_name(new, line);
 	new->function = NULL;
 	new->next = NULL;
 	if (label != NULL)
@@ -45,7 +49,7 @@ t_label	*new_label(t_label *label, char *line)
 int		new_function(t_label *label, char *line)
 {
 	t_function	*function;
-	
+
 	function = label->function;
 	while (function != NULL && function->next != NULL)
 		function = function->next;
@@ -71,9 +75,11 @@ int		is_label(char *line)
 	int i;
 
 	i = 0;
-	while (line[i] != '\0' && line[i] != ':')
+	while (is_space(line[i]))
 		i++;
-	if (i > 0 && line[i] == ':' && line[i-1] != '%')
+	while (line[i] != '\0' && tmp_name_strchr(LABEL_CHARS, line[i]))
+		i++;
+	if (i > 0 && line[i] == ':')
 		return (1);
 	return (0);
 }
