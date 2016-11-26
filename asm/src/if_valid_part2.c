@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 16:16:58 by ttridon           #+#    #+#             */
-/*   Updated: 2016/11/26 13:20:27 by baalbane         ###   ########.fr       */
+/*   Updated: 2016/11/26 15:01:18 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ t_label	*tmpname(int fd)
 	actu = start;
 	while (get_next_line(fd, &line))
 	{
-		if (tmp_name_strchr(line, '#'))
+		if (tmp_name_strchr(line, COMMENT_CHAR))
 			del_commentaire(line);
 		if (is_label(line))
 			actu = new_label(actu, line);
-		else if (!is_empty(line))
+		else if (!ft_isempty(line))
 			new_function(actu, line);
 		else
 			free(line);
@@ -38,9 +38,12 @@ t_label	*new_label(t_label *label, char *line)
 {
 	t_label	*new;
 	new = malloc(sizeof(t_label));
-	new->line = tmp_name(new, line);
 	new->function = NULL;
 	new->next = NULL;
+	if (line == NULL)
+		new->name = NULL;
+	else
+		new->name = tmp_name(new, line);
 	if (label != NULL)
 		label->next = new;
 	return (new);
@@ -75,7 +78,7 @@ int		is_label(char *line)
 	int i;
 
 	i = 0;
-	while (is_space(line[i]))
+	while (ft_isspace(line[i]))
 		i++;
 	while (line[i] != '\0' && tmp_name_strchr(LABEL_CHARS, line[i]))
 		i++;

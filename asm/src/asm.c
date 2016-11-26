@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 13:56:53 by ttridon           #+#    #+#             */
-/*   Updated: 2016/11/24 15:52:12 by ttridon          ###   ########.fr       */
+/*   Updated: 2016/11/26 14:47:22 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 int		parser(char *file)
 {
 	int		fd;
+	t_label	*start;
 
 	fd = open(file, O_RDONLY);
 	check_name_comment(fd);
+	start = tmpname(fd);
+	print_struct(start);
 	return (1);
 }
 

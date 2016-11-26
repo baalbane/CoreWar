@@ -1,7 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tool.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/11/26 14:17:35 by baalbane          #+#    #+#             */
+/*   Updated: 2016/11/26 15:01:33 by baalbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-
-
-#incude "asm.h"
+#include "asm.h"
 
 char	*tmp_name(t_label *new, char *line)
 {
@@ -11,7 +20,7 @@ char	*tmp_name(t_label *new, char *line)
 
 	i = 0;
 	j = 0;
-	while (is_space(line[i]))
+	while (ft_isspace(line[i]))
 		i++;
 	while (line[i+j] != ':')
 		j++;
@@ -19,11 +28,11 @@ char	*tmp_name(t_label *new, char *line)
 	name[j] = '\0';
 	while (--j >= 0)
 		name[j] = line[i + j];
-	tmp_name_check_fonction(new, line);
+	tmp_name_check_function(new, line);
 	return (name);
 }
 
-int		tmp_name_check_fonction(t_label *new, char *line)
+int		tmp_name_check_function(t_label *new, char *line)
 {
 	int		j;
 	int		i;
@@ -34,7 +43,7 @@ int		tmp_name_check_fonction(t_label *new, char *line)
 	while (line[i] != ':')
 		i++;
 	i++;
-	while (is_space(line[i]))
+	while (ft_isspace(line[i]))
 		i++;
 	while (line[i + j] != '\0')
 		j++;
@@ -65,11 +74,11 @@ int		tmp_name_strchr(char *line, char a)
 int		del_commentaire(char *line)
 {
 	int		i;
-
 	i = 0;
 	while (line[i] != '#')
 		i++;
 	while (line[i+1] != '\0')
 		line[i++] = '\0';
+	line[i] = '\0';
 	return (1);
 }
