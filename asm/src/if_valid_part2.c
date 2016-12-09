@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 16:16:58 by ttridon           #+#    #+#             */
-/*   Updated: 2016/11/26 15:01:18 by baalbane         ###   ########.fr       */
+/*   Updated: 2016/12/09 15:19:49 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_label	*tmpname(int fd)
 			del_commentaire(line);
 		if (is_label(line))
 			actu = new_label(actu, line);
-		else if (!ft_isempty(line))
+		else if (ft_isempty(line) == 0)
 			new_function(actu, line);
 		else
 			free(line);
