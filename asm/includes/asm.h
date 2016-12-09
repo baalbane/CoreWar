@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 14:04:56 by ttridon           #+#    #+#             */
-/*   Updated: 2016/11/26 15:09:23 by baalbane         ###   ########.fr       */
+/*   Updated: 2016/12/09 16:38:00 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ typedef struct		s_label
 typedef struct		s_op
 {
 	char			*name;
-	char			args_number;
-	char			args_type[4];
+	int				args_number;
+	int				args_type[4];
 	char			op_code;
 	int				cycle_number;
 	char			*description;
-	char			octet_codage;
-	char			carry;
+	int				octet_codage;
+	int				carry;
+	struct s_op		*next;
 }					t_op;
 
 
@@ -57,7 +58,6 @@ typedef struct		s_header
 	char			comment[COMMENT_LENGTH + 1];
 }					t_header;
 
-void				get_op_tab();
 int					check_name_comment(int fd);
 int					error_name_comment(int error_type, char *line, char *tmp);
 int					parser(char *file);
@@ -73,8 +73,23 @@ int					tmp_name_check_function(t_label *new, char *line);
 int					tmp_name_strchr(char *line, char a);
 int					del_commentaire(char *line);
 
-
+t_op				*get_op_tab();
+t_op				*get_ld();
+t_op				*get_st();
+t_op				*get_add();
+t_op				*get_sub();
+t_op				*get_and();
+t_op				*get_or();
+t_op				*get_xor();
+t_op				*get_zjmp();
+t_op				*get_ldi();
+t_op				*get_sti();
+t_op				*get_fork();
+t_op				*get_lld();
+t_op				*get_lldi();
+t_op				*get_lfork();
+t_op				*get_aff();
 //DEGUG
 int					print_struct(t_label *start);
-
+int					print_op_tab(t_op *start);
 #endif
