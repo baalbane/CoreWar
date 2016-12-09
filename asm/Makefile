@@ -6,7 +6,7 @@
 #    By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/17 16:41:46 by ttridon           #+#    #+#              #
-#    Updated: 2016/12/09 16:11:16 by baalbane         ###   ########.fr        #
+#    Updated: 2016/12/09 17:01:35 by baalbane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LDLIBS = -lft
 
 SRC_NAME =	asm.c	if_valid_part1.c	error.c \
 			tool.c	if_valid_part2.c  \
-			debug.c get_op_tab.c
+			debug.c get_op_tab.c check.c
 
 SRC_PATH = src/
 

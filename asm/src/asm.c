@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 13:56:53 by ttridon           #+#    #+#             */
-/*   Updated: 2016/12/09 16:38:03 by baalbane         ###   ########.fr       */
+/*   Updated: 2016/12/09 17:53:09 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		parser(char *file)
 
 	t_op *optab = get_op_tab();
 	print_op_tab(optab);
+	check_all_label(start->next, optab);
 	return (1);
 }
 

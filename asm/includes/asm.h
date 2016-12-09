@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 14:04:56 by ttridon           #+#    #+#             */
-/*   Updated: 2016/12/09 16:38:00 by baalbane         ###   ########.fr       */
+/*   Updated: 2016/12/09 17:53:07 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ char				*tmp_name(t_label *new, char *line);
 int					tmp_name_check_function(t_label *new, char *line);
 int					tmp_name_strchr(char *line, char a);
 int					del_commentaire(char *line);
+
+int					check_all_label(t_label *label, t_op *optab);
+int					check_all_function(t_function *function, t_op *optab);
+t_op				*get_good_optab(t_function *function, t_op *optab, int *i);
+int					ft_namecmp(char *line, char *name, int *i);
 
 t_op				*get_op_tab();
 t_op				*get_ld();
