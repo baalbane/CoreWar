@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 14:04:56 by ttridon           #+#    #+#             */
-/*   Updated: 2016/12/09 17:53:07 by baalbane         ###   ########.fr       */
+/*   Updated: 2016/12/18 17:01:25 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,15 @@ int					tmp_name_strchr(char *line, char a);
 int					del_commentaire(char *line);
 
 int					check_all_label(t_label *label, t_op *optab);
-int					check_all_function(t_function *function, t_op *optab);
+int					check_all_function(t_function *function, t_op *optab, t_label *label);
+int					check_arg(char *line, t_op *actualop, t_label *label, int *i, int nbrarg);
 t_op				*get_good_optab(t_function *function, t_op *optab, int *i);
 int					ft_namecmp(char *line, char *name, int *i);
+
+int					check_registre(char *line, int *i);
+int					check_label(char *line, int *i, t_label *label);
+int					check_nbr(char *line, int *i);
+int					check_nbr2(char *line, int *i);
 
 t_op				*get_op_tab();
 t_op				*get_ld();
