@@ -6,7 +6,7 @@
 /*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:44:07 by baalbane          #+#    #+#             */
-/*   Updated: 2016/12/18 17:13:13 by baalbane         ###   ########.fr       */
+/*   Updated: 2016/12/18 17:15:47 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int check_label(char *line, int *i, t_label *label)
 		j = 0;
 		while (label->name[j] != '\0' && line[*i + j] == label->name[j])
 			j++;
+		//while(line[f] != ',' || != '\0')
 		if (label->name[j] == '\0' && line[*i + j] == ' ')
 			return (1);
 		printf("LABEL FAIL: j: %d\n", j);
