@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 15:57:57 by ttridon           #+#    #+#             */
-/*   Updated: 2017/01/17 15:29:27 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/06 17:51:12 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static void				create_champion(t_header *header, t_champion **champion)
 	new_champion->code = ft_strdup_mod(header->code,
 		big_to_little_endian(header->size));
 	new_champion->size = big_to_little_endian(header->size);
-	new_champion->live = 0;
 	new_champion->number = nb;
 	new_champion->next = NULL;
 	nb++;

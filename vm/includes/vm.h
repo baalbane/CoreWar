@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 10:18:21 by ttridon           #+#    #+#             */
-/*   Updated: 2017/01/26 16:17:22 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/06 18:53:57 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ typedef struct			s_game
 	WINDOW				*right_panel;
 	int					nb_players;
 	int					ncurses;
+	int					dump;
+	int					cycle_to_die;
+	int					check;
 }						t_game;
 
 typedef struct			s_process

@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 18:50:04 by ttridon           #+#    #+#             */
-/*   Updated: 2017/01/23 15:19:47 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/06 16:34:24 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	arena_init(unsigned char *arena, t_champion *champion, t_game *game)
 		ratio++;
 		champion = champion->next;
 	}
-	// i = 0; printf arena;
+	// i = 0;
 	// while (i < MEM_SIZE)
 	// {
 	// 	printf("%02x ", arena[i]);
