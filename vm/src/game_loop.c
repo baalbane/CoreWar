@@ -6,14 +6,31 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 14:07:13 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/06 18:48:53 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/07 18:02:32 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+static void	process_exe(unsigned char *arena)
+{
+	if (arena)
+		;
+}
 //gerer CYCLE_TO_DIE - CYCLE_DELTA - MAX_CHECKS.
-static void process_kill(int *death, t_process **process, t_process **start,
-	t_game *game)
+
+static void	time_to_death(t_game *game)
+{
+	if (game->nbr_live > NBR_LIVE || ++game->check > MAX_CHECKS)
+	{
+		game->cycle_to_die -= CYCLE_DELTA;
+		game->check = 0;
+	}
+	else
+		game->check++;
+}
+
+static void process_kill(t_process **process, t_process **start)
 {
 	t_process *tmp;
 	t_process	*prev;
@@ -93,13 +110,17 @@ void game_loop(unsigned char *arena, t_champion *champion, t_game *game)
 	start = process;
 	while (process && game->dump != cycle)
 	{
-		process_exe();
+		process_exe(arena);
 		if (process == NULL || (process = process->next) == NULL)
 		{
 			process = start;
 			cycle++;
 		}
 		if (cycle == death)
-			process_kill(&death, &process, &start, game);
+		{
+			process_kill(&process, &start);
+			time_to_death(game);
+			death += game->cycle_to_die;
+		}
 	}
 }

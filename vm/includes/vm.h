@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 10:18:21 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/06 18:53:57 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/07 18:02:07 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ typedef struct			s_game
 	int					ncurses;
 	int					dump;
 	int					cycle_to_die;
+	int					nbr_live;
 	int					check;
+	int					winner;
 }						t_game;
 
 typedef struct			s_process
