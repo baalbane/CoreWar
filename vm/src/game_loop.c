@@ -6,28 +6,30 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 14:07:13 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/07 18:02:32 by baalbane         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:14:39 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void	process_exe(unsigned char *arena)
+static void process_exe(unsigned char *arena, t_process *process, t_game *game)
 {
-	if (arena)
-		;
+	if (process->cooldown)
+		process->cooldown--;
+	else if (arena[process->PC] && arena[process->PC] <= 16)
+		tableau[arena[process->PC]](arena, process, game);
+	else
+		process->PC++;
 }
-//gerer CYCLE_TO_DIE - CYCLE_DELTA - MAX_CHECKS.
 
-static void	time_to_death(t_game *game)
+static void time_to_die(t_game *game)
 {
 	if (game->nbr_live > NBR_LIVE || ++game->check > MAX_CHECKS)
 	{
 		game->cycle_to_die -= CYCLE_DELTA;
 		game->check = 0;
 	}
-	else
-		game->check++;
+	game->nbr_live = 0;
 }
 
 static void process_kill(t_process **process, t_process **start)
@@ -119,7 +121,7 @@ void game_loop(unsigned char *arena, t_champion *champion, t_game *game)
 		if (cycle == death)
 		{
 			process_kill(&process, &start);
-			time_to_death(game);
+			time_to_die(game);
 			death += game->cycle_to_die;
 		}
 	}

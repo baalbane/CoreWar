@@ -6,7 +6,7 @@
 #    By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/17 16:41:46 by ttridon           #+#    #+#              #
-#    Updated: 2017/01/17 14:29:51 by ttridon          ###   ########.fr        #
+#    Updated: 2017/02/07 18:13:20 by ttridon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LDFLAGS = -L ../ressources/libft -lncurses
 
 LDLIBS = -lft
 
-SRC_NAME = vm.c		parsing.c	arena.c
+SRC_NAME = vm.c		parsing.c	arena.c		game_loop.c
 
 SRC_PATH = src/
 
