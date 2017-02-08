@@ -6,14 +6,14 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/02 15:46:12 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/07 18:00:45 by baalbane         ###   ########.fr       */
+/*   Updated: 2017/02/08 15:55:53 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 #include <unistd.h>
 
-static int		check_flags(int ac, char **av, int *i, t_game *game)
+static int	check_flags(int ac, char **av, int *i, t_game *game)
 {
 	game->ncurses = 0;
 	game->dump = -1;
@@ -21,7 +21,7 @@ static int		check_flags(int ac, char **av, int *i, t_game *game)
 	while (av[*i])
 	{
 		if (av[*i][0] != '-')
-			break;
+			break ;
 		if (!ft_strcmp(av[*i], "-n"))
 			;
 		else

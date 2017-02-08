@@ -6,13 +6,27 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 18:50:04 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/06 16:34:24 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/08 15:59:32 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	arena_init(unsigned char *arena, t_champion *champion, t_game *game)
+static void	arena_aff(unsigned char *arena)
+{
+	int	i;
+
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		printf("%02x ", arena[i]);
+		i++;
+		if (i % 64 == 0)
+			printf("\n");
+	}
+}
+
+void		arena_init(unsigned char *arena, t_champion *champion, t_game *game)
 {
 	int		i;
 	int		j;
@@ -35,12 +49,6 @@ void	arena_init(unsigned char *arena, t_champion *champion, t_game *game)
 		ratio++;
 		champion = champion->next;
 	}
-	// i = 0;
-	// while (i < MEM_SIZE)
-	// {
-	// 	printf("%02x ", arena[i]);
-	// 	i++;
-	// 	if (i % 64 == 0)
-	// 		printf("\n");
-	// }
+	if (game->dump != -1)
+		arena_aff(arena);
 }

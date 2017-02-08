@@ -6,13 +6,13 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 14:07:13 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/07 18:14:39 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/08 16:10:17 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void process_exe(unsigned char *arena, t_process *process, t_game *game)
+static void	process_exe(unsigned char *arena, t_process *process, t_game *game)
 {
 	if (process->cooldown)
 		process->cooldown--;
@@ -22,7 +22,7 @@ static void process_exe(unsigned char *arena, t_process *process, t_game *game)
 		process->PC++;
 }
 
-static void time_to_die(t_game *game)
+static void	time_to_die(t_game *game)
 {
 	if (game->nbr_live > NBR_LIVE || ++game->check > MAX_CHECKS)
 	{
@@ -32,9 +32,9 @@ static void time_to_die(t_game *game)
 	game->nbr_live = 0;
 }
 
-static void process_kill(t_process **process, t_process **start)
+static void	process_kill(t_process **process, t_process **start)
 {
-	t_process *tmp;
+	t_process	*tmp;
 	t_process	*prev;
 
 	prev = NULL;
@@ -59,7 +59,7 @@ static void process_kill(t_process **process, t_process **start)
 	*process = *start;
 }
 
-static void new_process(int nb, t_champion *champion, t_process **process,
+static void	new_process(int nb, t_champion *champion, t_process **process,
 	t_game *game)
 {
 	t_process	*new_process;
@@ -84,7 +84,7 @@ static void new_process(int nb, t_champion *champion, t_process **process,
 	new_process->PC = (MEM_SIZE / game->nb_players) * nb;
 }
 
-static void process_init(t_champion *champion, t_process **process,
+static void	process_init(t_champion *champion, t_process **process,
 	t_game *game)
 {
 	int		nb;
@@ -98,7 +98,7 @@ static void process_init(t_champion *champion, t_process **process,
 	}
 }
 
-void game_loop(unsigned char *arena, t_champion *champion, t_game *game)
+void		game_loop(unsigned char *arena, t_champion *champion, t_game *game)
 {
 	t_process	*process;
 	t_process	*start;
