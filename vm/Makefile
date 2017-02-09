@@ -6,7 +6,7 @@
 #    By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/17 16:41:46 by ttridon           #+#    #+#              #
-#    Updated: 2017/02/07 18:13:20 by ttridon          ###   ########.fr        #
+#    Updated: 2017/02/09 16:06:13 by ttridon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,13 @@ SRC_PATH = src/
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
-OBJ_NAME = $(SRC_NAME:.c=.o)
+OP_NAME = live.c
+
+OP_PATH = src/functions/
+
+OP = $(addprefix $(OP_PATH), $(OP_NAME))
+
+OBJ_NAME = $(SRC_NAME:.c=.o) $(OP_NAME:.c=.o)
 
 OBJ_PATH = obj/
 

@@ -6,13 +6,13 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 18:50:04 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/08 15:59:32 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/09 15:36:32 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void	arena_aff(unsigned char *arena)
+void	arena_aff(unsigned char *arena)
 {
 	int	i;
 
@@ -24,6 +24,7 @@ static void	arena_aff(unsigned char *arena)
 		if (i % 64 == 0)
 			printf("\n");
 	}
+	printf("\n--------------\n");
 }
 
 void		arena_init(unsigned char *arena, t_champion *champion, t_game *game)
@@ -49,6 +50,4 @@ void		arena_init(unsigned char *arena, t_champion *champion, t_game *game)
 		ratio++;
 		champion = champion->next;
 	}
-	if (game->dump != -1)
-		arena_aff(arena);
 }

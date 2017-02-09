@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 14:07:13 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/08 16:10:17 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/09 16:02:46 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 static void	process_exe(unsigned char *arena, t_process *process, t_game *game)
 {
+	void (*tab_op[2])(unsigned char* arena, t_process *process, t_game *game) = {
+		live,
+		live2
+	};
+	if (arena && game)
+		;
 	if (process->cooldown)
 		process->cooldown--;
 	else if (arena[process->PC] && arena[process->PC] <= 16)
-		tableau[arena[process->PC]](arena, process, game);
+		tab_op[arena[process->PC] - 1](arena, process, game);
 	else
 		process->PC++;
 }
@@ -112,7 +118,9 @@ void		game_loop(unsigned char *arena, t_champion *champion, t_game *game)
 	start = process;
 	while (process && game->dump != cycle)
 	{
-		process_exe(arena);
+		// arena_aff(arena);
+		// printf("PC: %d\n", process->PC);
+		process_exe(arena, process, game);
 		if (process == NULL || (process = process->next) == NULL)
 		{
 			process = start;
