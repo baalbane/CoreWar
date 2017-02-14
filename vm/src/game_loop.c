@@ -6,24 +6,22 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 14:07:13 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/09 16:02:46 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/14 17:10:07 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void	process_exe(unsigned char *arena, t_process *process, t_game *game)
+static void	process_exe(unsigned char *arena, t_process *process, t_champion *champion, t_game *game)
 {
-	void (*tab_op[2])(unsigned char* arena, t_process *process, t_game *game) = {
-		live,
-		live2
+	void (*tab_op[1])(unsigned char* arena, t_process *process, t_champion *champion, t_game *game) = {
+		live
 	};
-	if (arena && game)
-		;
+
 	if (process->cooldown)
 		process->cooldown--;
-	else if (arena[process->PC] && arena[process->PC] <= 16)
-		tab_op[arena[process->PC] - 1](arena, process, game);
+	else if (arena[process->PC] && arena[process->PC] <= 1)
+		tab_op[arena[process->PC] - 1](arena, process, champion, game);
 	else
 		process->PC++;
 }
@@ -49,6 +47,7 @@ static void	process_kill(t_process **process, t_process **start)
 	{
 		if (tmp->live == 0)
 		{
+			printf("%d\n", tmp->reg[0]);
 			if (prev == NULL)
 				*start = tmp->next;
 			else
@@ -65,8 +64,7 @@ static void	process_kill(t_process **process, t_process **start)
 	*process = *start;
 }
 
-static void	new_process(int nb, t_champion *champion, t_process **process,
-	t_game *game)
+static void	new_process(int nb, t_champion *champion, t_process **process, t_game *game)
 {
 	t_process	*new_process;
 	int			i;
@@ -120,7 +118,7 @@ void		game_loop(unsigned char *arena, t_champion *champion, t_game *game)
 	{
 		// arena_aff(arena);
 		// printf("PC: %d\n", process->PC);
-		process_exe(arena, process, game);
+		process_exe(arena, process, champion, game);
 		if (process == NULL || (process = process->next) == NULL)
 		{
 			process = start;

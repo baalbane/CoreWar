@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 15:57:57 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/06 17:51:12 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/09 18:07:46 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static unsigned char	*ft_strdup_mod(unsigned char *line, unsigned int size)
 	return (new_line);
 }
 
-static unsigned int		big_to_little_endian(unsigned int nbr)
+static int		big_to_little_endian(int nbr)
 {
 	return ((nbr >> 24 & 0xff) | (nbr << 8 & 0xff0000)
 		| (nbr >> 8 & 0xff00) | (nbr >> 24 & 0xff000000));
