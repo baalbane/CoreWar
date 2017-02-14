@@ -6,16 +6,26 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:56:49 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/14 17:15:51 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/14 17:34:14 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static int	big_to_little_endian(int *nbr)
+static int		get_arg(unsigned char *arena, int PC, int size)
 {
-	return ((*nbr >> 24 & 0xff) | (*nbr << 8 & 0xff0000)
-		| (*nbr >> 8 & 0xff00) | (*nbr >> 24 & 0xff000000));
+	int		i;
+	int		nb;
+
+	i = -1;
+	nb = 0;
+	while (++i < size)
+	{
+		if (PC+i > MEM_SIZE)
+			i -= MEM_SIZE;
+		nb = nb * 256 + arena[PC+i];
+	}
+	return (nb);
 }
 
 void		live(unsigned char *arena, t_process *process, t_champion *champion,
@@ -34,8 +44,7 @@ void		live(unsigned char *arena, t_process *process, t_champion *champion,
 		process->live = 1;
 		//game->winner = process->reg[0];
 		game->nbr_live++;
-		arg = big_to_little_endian((int *)(&arena[process->PC + 1]));
-		// printf("arg: [%d] | process: [%d]\n", arg, process->PC);
+		printf("==%d==\n", (arg=get_arg(arena, process->PC + 1, 4)));
 		while (champion)
 		{
 			if (champion->number == arg)
