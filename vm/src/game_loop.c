@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 14:07:13 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/14 17:10:07 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/15 16:11:26 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static void	process_exe(unsigned char *arena, t_process *process, t_champion *ch
 		live
 	};
 
-	if (process->cooldown)
+	if (process->cooldown > 0)
 		process->cooldown--;
 	else if (arena[process->PC] && arena[process->PC] <= 1)
 		tab_op[arena[process->PC] - 1](arena, process, champion, game);
 	else
-		process->PC++;
+		process->PC = (process->PC + 1) % MEM_SIZE;
 }
 
 static void	time_to_die(t_game *game)
@@ -36,7 +36,7 @@ static void	time_to_die(t_game *game)
 	game->nbr_live = 0;
 }
 
-static void	process_kill(t_process **process, t_process **start)
+static void	process_kill(t_process **process)
 {
 	t_process	*tmp;
 	t_process	*prev;
@@ -45,11 +45,11 @@ static void	process_kill(t_process **process, t_process **start)
 	tmp = *process;
 	while (tmp)
 	{
+		printf("Process: %d | Live: %d\n", tmp->reg[0], tmp->live);
 		if (tmp->live == 0)
 		{
-			printf("%d\n", tmp->reg[0]);
 			if (prev == NULL)
-				*start = tmp->next;
+				*process = tmp->next;
 			else
 				prev->next = tmp->next;
 			free(tmp);
@@ -61,7 +61,6 @@ static void	process_kill(t_process **process, t_process **start)
 		}
 		tmp = tmp->next;
 	}
-	*process = *start;
 }
 
 static void	new_process(int nb, t_champion *champion, t_process **process, t_game *game)
@@ -77,7 +76,7 @@ static void	new_process(int nb, t_champion *champion, t_process **process, t_gam
 	*process = new_process;
 	new_process->live = 0;
 	new_process->carry = 0;
-	new_process->cooldown = 0;
+	new_process->cooldown = -1;
 	i = 0;
 	while (i < REG_NUMBER)
 	{
@@ -105,7 +104,7 @@ static void	process_init(t_champion *champion, t_process **process,
 void		game_loop(unsigned char *arena, t_champion *champion, t_game *game)
 {
 	t_process	*process;
-	t_process	*start;
+	t_process	*tmp;
 	int			cycle;
 	int			death;
 
@@ -113,22 +112,21 @@ void		game_loop(unsigned char *arena, t_champion *champion, t_game *game)
 	process_init(champion, &process, game);
 	cycle = 0;
 	death = game->cycle_to_die;
-	start = process;
 	while (process && game->dump != cycle)
 	{
-		// arena_aff(arena);
-		// printf("PC: %d\n", process->PC);
-		process_exe(arena, process, champion, game);
-		if (process == NULL || (process = process->next) == NULL)
+		tmp = process;
+		while (tmp)
 		{
-			process = start;
-			cycle++;
+			process_exe(arena, tmp, champion, game);
+			tmp = tmp->next;
 		}
 		if (cycle == death)
 		{
-			process_kill(&process, &start);
+			printf("Time to Die->Cycle: %d\n", cycle);
+			process_kill(&process);
 			time_to_die(game);
 			death += game->cycle_to_die;
 		}
+		cycle++;
 	}
 }

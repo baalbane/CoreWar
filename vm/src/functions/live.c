@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:56:49 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/14 17:34:14 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/15 16:05:51 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void		live(unsigned char *arena, t_process *process, t_champion *champion,
 		process->live = 1;
 		//game->winner = process->reg[0];
 		game->nbr_live++;
-		printf("==%d==\n", (arg=get_arg(arena, process->PC + 1, 4)));
+		arg = get_arg(arena, process->PC + 1, DIR_SIZE);
+		printf("Joueur: %d | arg: %d\n", process->reg[0], arg);
 		while (champion)
 		{
 			if (champion->number == arg)
@@ -54,6 +55,7 @@ void		live(unsigned char *arena, t_process *process, t_champion *champion,
 			}
 			champion = champion->next;
 		}
-		process->PC += DIR_SIZE + 1;
+		process->PC = (process->PC + DIR_SIZE + 1) % MEM_SIZE;
+		process->cooldown = -1;
 	}
 }
