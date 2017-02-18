@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 10:18:21 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/15 15:30:54 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/18 16:55:38 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 # include "define.h"
-#include <limits.h>
+# include <limits.h>
 # include <ncurses.h>
 
 # include <stdio.h>
@@ -64,8 +64,13 @@ typedef struct			s_header
 void					arena_aff(unsigned char *arena);
 void 					arena_init(unsigned char *arena, t_champion *champion, t_game *game);
 void					game_loop(unsigned char *arena, t_champion *champion, t_game *game);
+void					get_args(unsigned char *arena, int PC, int *tab, int dir_size);
+
+int						get_value(unsigned char *arena, int PC, int size);
 int						parsing(char *filme, t_champion **champion);
 
 void					live(unsigned char *arena, t_process *process, t_champion *champion, t_game *game);
+void					ld(unsigned char *arena, t_process *process, t_champion *champion, t_game *game);
+void					st(unsigned char *arena, t_process *process, t_champion *champion, t_game *game);
 
 #endif

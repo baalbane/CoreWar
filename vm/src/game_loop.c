@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 14:07:13 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/15 16:11:26 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/18 16:48:37 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 static void	process_exe(unsigned char *arena, t_process *process, t_champion *champion, t_game *game)
 {
 	void (*tab_op[1])(unsigned char* arena, t_process *process, t_champion *champion, t_game *game) = {
-		live
+		live,
+		ld
 	};
 
 	if (process->cooldown > 0)
 		process->cooldown--;
-	else if (arena[process->PC] && arena[process->PC] <= 1)
+	else if (arena[process->PC] && arena[process->PC] <= 2)
 		tab_op[arena[process->PC] - 1](arena, process, champion, game);
 	else
 		process->PC = (process->PC + 1) % MEM_SIZE;
