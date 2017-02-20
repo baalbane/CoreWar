@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 15:56:49 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/18 15:44:47 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/20 19:19:04 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ void		live(unsigned char *arena, t_process *process, t_champion *champion,
 			champion = champion->next;
 		}
 		process->cooldown = -1;
-		process->PC++;
+		process->PC = move_PC(process->PC, 1);
 	}
 }
