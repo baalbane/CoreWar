@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 10:18:21 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/20 19:20:55 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/21 18:45:59 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,13 @@ void					arena_aff(unsigned char *arena);
 void 					arena_init(unsigned char *arena, t_champion *champion, t_game *game);
 void					game_loop(unsigned char *arena, t_champion *champion, t_game *game);
 void					get_args(unsigned char *arena, t_process *process, int *tab, int dir_size);
+void					rewrite_arena(unsigned char *arena, int PC, int value);
 
-int						move_PC(int PC, int size);
+int						check_reg(unsigned char var, int *tab);
+int						get_ind(unsigned char *arena, int PC);
 int						get_value(unsigned char *arena, t_process *process, int size);
 int						parsing(char *filme, t_champion **champion);
+int						move_PC(int PC, int size);
 
 void					live(unsigned char *arena, t_process *process, t_champion *champion, t_game *game);
 void					ld(unsigned char *arena, t_process *process);

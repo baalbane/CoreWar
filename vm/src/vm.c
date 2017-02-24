@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/02 15:46:12 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/14 16:50:07 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/24 16:19:31 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int			main(int ac, char **av)
 	}
 	arena_init(arena, champion, game);
 	game_loop(arena, champion, game);
+	arena_aff(arena);
 	return (0);
 }

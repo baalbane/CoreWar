@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 14:07:13 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/20 19:20:13 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/21 18:55:38 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 static void	process_exe(unsigned char *arena, t_process *process, t_champion *champion, t_game *game)
 {
 	void (*tab_op[15])(unsigned char* arena, t_process *process) = {
-		ld
+		ld,
+		st
 	};
 
 	if (process->cooldown > 0)
 		process->cooldown--;
-	else if (arena[process->PC] >= 2 && arena[process->PC] <= 2)
+	else if (arena[process->PC] >= 2 && arena[process->PC] <= 3)
 		tab_op[arena[process->PC] - 2](arena, process);
 	else if (arena[process->PC] == 1)
 		live(arena, process, champion, game);
@@ -47,7 +48,7 @@ static void	process_kill(t_process **process)
 	tmp = *process;
 	while (tmp)
 	{
-		printf("Process: %d | Live: %d\n", tmp->reg[0], tmp->live);
+		// printf("Process: %d | Live: %d\n", tmp->reg[0], tmp->live);
 		if (tmp->live == 0)
 		{
 			if (prev == NULL)
@@ -124,7 +125,7 @@ void		game_loop(unsigned char *arena, t_champion *champion, t_game *game)
 		}
 		if (cycle == death)
 		{
-			printf("Time to Die->Cycle: %d\n", cycle);
+			// printf("Time to Die->Cycle: %d\n", cycle);
 			process_kill(&process);
 			time_to_die(game);
 			death += game->cycle_to_die;

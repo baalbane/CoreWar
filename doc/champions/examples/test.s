@@ -6,15 +6,15 @@
 ;    By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2017/02/09 17:16:44 by ttridon           #+#    #+#              ;
-;    Updated: 2017/02/15 17:12:14 by ttridon          ###   ########.fr        ;
+;    Updated: 2017/02/24 16:29:11 by ttridon          ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
 .name "test"
 .comment "cobaye"
 
-l1:		ld 23, r1
-		sti r1, 1, %12
-		ld %:l2, r1
+l1:		ld %42000000, r2
+		st r2, r3
+		st r3, 6
 
 l2:

@@ -6,7 +6,7 @@
 /*   By: zaz <zaz@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2017/02/20 18:21:26 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/02/21 17:37:51 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,6 @@
 /*
 **
 */
-
-#define MASK_REG 0001
-#define MASK_IND 0010
-#define MASK_DIR 0011
 
 typedef char	t_arg_type;
 

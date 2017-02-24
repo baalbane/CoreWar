@@ -6,11 +6,13 @@
 ;    By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2017/02/14 17:06:46 by ttridon           #+#    #+#              ;
-;    Updated: 2017/02/15 15:36:53 by ttridon          ###   ########.fr        ;
+;    Updated: 2017/02/20 17:50:18 by ttridon          ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
 .name "test2"
 .comment "cobaye2"
 
-live %3
+l1:		sti r1, 1, %:l2
+
+l2:		ld %30, r1
