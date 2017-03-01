@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 18:50:04 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/24 16:19:21 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/03/01 16:54:43 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void		arena_init(unsigned char *arena, t_champion *champion, t_game *game)
 	int		pos;
 	int		ratio;
 
+//printf("WEGWQEGFQWEF\n");
 	ft_bzero(arena, MEM_SIZE);
 	ratio = 0;
 	pos = MEM_SIZE / game->nb_players;

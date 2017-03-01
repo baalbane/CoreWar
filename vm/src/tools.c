@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 17:48:36 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/24 16:30:31 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/03/01 15:29:16 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int			move_PC(int PC, int size)
 {
+	// if (size != 1)
+	// 	printf("Move_PC: %d\n", size);
 	PC = (PC + size) % MEM_SIZE;
 	if (PC < 0)
 		PC += MEM_SIZE;
@@ -37,10 +39,16 @@ void 		rewrite_arena(unsigned char *arena, int PC, int value)//size?
 	int		i;
 
 	i = 4;
+	printf("Start rewrite arena from %d\n", PC);
 	while (--i >= 0)
 	{
+		while (PC + i >= MEM_SIZE)
+			PC -= MEM_SIZE;
+		while (PC + i < 0)
+			PC += MEM_SIZE;
 		arena[PC + i] = value % 256;
 		value = value / 256;
+		printf("nb: %d | arena: %d\n", value, (int)arena[PC + i]);
 	}
 }
 
@@ -86,6 +94,7 @@ int			get_value(unsigned char *arena, t_process *process, int size)
 	int		i;
 	int		nb;
 	int		tmp;
+	// short	nb2;
 
 	i = -1;
 	nb = 0;

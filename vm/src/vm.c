@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/02 15:46:12 by ttridon           #+#    #+#             */
-/*   Updated: 2017/02/24 16:19:31 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/03/01 16:53:16 by ttridon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int	check_flags(int ac, char **av, int *i, t_game *game)
 {
 	game->ncurses = 0;
-	game->dump = -1;
+	game->dump = 2000;
 	*i = 1;
 	while (av[*i])
 	{
@@ -57,7 +57,11 @@ int			main(int ac, char **av)
 		i++;
 	}
 	arena_init(arena, champion, game);
+	printf("WEGWQEGFQWEF\n");
+
 	game_loop(arena, champion, game);
+	printf("WEGWQEGFQWEF\n");
+
 	arena_aff(arena);
 	return (0);
 }
