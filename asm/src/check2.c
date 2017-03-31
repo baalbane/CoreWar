@@ -6,16 +6,17 @@
 /*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:44:07 by baalbane          #+#    #+#             */
-/*   Updated: 2016/12/18 17:15:47 by baalbane         ###   ########.fr       */
+/*   Updated: 2017/03/31 15:55:58 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int check_registre(char *line, int *i)
+int	check_registre(char *line, int *i)
 {
-	int nb = 0;
-	
+	int nb;
+
+	nb = 0;
 	(*i)++;
 	while (line[*i] <= '9' && line[*i] >= '0')
 	{
@@ -27,7 +28,7 @@ int check_registre(char *line, int *i)
 	return (1);
 }
 
-int check_label(char *line, int *i, t_label *label)
+int	check_label(char *line, int *i, t_label *label)
 {
 	int j;
 
@@ -39,21 +40,21 @@ int check_label(char *line, int *i, t_label *label)
 		j = 0;
 		while (label->name[j] != '\0' && line[*i + j] == label->name[j])
 			j++;
-		if (label->name[j] == LABEL_CHAR && (line[*i + j] == ' ' || line[*i + j] == SEPARATOR_CHAR
-		||  line[*i + j] == '\0'))
+		if (label->name[j] == LABEL_CHAR && (line[*i + j] == ' '
+		|| line[*i + j] == SEPARATOR_CHAR || line[*i + j] == '\0'))
 		{
-			(*i)+=j;
+			(*i) += j;
 			return (1);
-		}	
+		}
 		label = label->next;
 	}
 	return (0);
 }
 
-int check_nbr(char *line, int *i)
+int	check_nbr(char *line, int *i)
 {
 	int		j;
-	
+
 	(*i)++;
 	j = (*i);
 	if (line[*i] == '-' || line[*i] == '+')
@@ -65,7 +66,7 @@ int check_nbr(char *line, int *i)
 	return (1);
 }
 
-int check_nbr2(char *line, int *i)
+int	check_nbr2(char *line, int *i)
 {
 	if (line[*i] == '-' || line[*i] == '+')
 		(*i)++;

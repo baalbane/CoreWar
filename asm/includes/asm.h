@@ -69,7 +69,7 @@ int					addbuff(char **buffer, int const fd, int *ret);
 int					get_next_line(int const fd, char **line);
 
 int					check_all_label(t_label *label, t_op *optab, t_label *start);
-int					check_all_function(t_function *function, t_op *optab, t_label *label);
+int					check_all_function(t_function *function, t_op *optab, t_label *lab);
 int					check_arg(t_function *function, t_label *label, int *i, int nbrarg);
 int					set_opcode(int type, t_function *function, int nbrarg);
 t_op				*get_good_optab(t_function *function, t_op *optab, int *i);
