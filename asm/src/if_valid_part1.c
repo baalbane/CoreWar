@@ -6,7 +6,7 @@
 /*   By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 16:21:25 by ttridon           #+#    #+#             */
-/*   Updated: 2016/11/24 15:52:07 by ttridon          ###   ########.fr       */
+/*   Updated: 2017/04/04 16:19:29 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,18 @@
 int		check_format(char *line, char *str)
 {
 	int		i;
+
 	i = 0;
 	while (line[i] != '\0' && str[i] != '\0' && line[i] == str[i])
 		i++;
 	if (str[i] != '\0')
 		return (0);
-	if (line[i] != ' ' || line[i+1] != '"')
+	if (line[i] != ' ' || line[i + 1] != '"')
 	{
-		//ERROR
 		printf("Error: No name after \".name\". \033[41m\033[33m<--CARE PRINTF\033[0m\n");
 		return (-1);
 	}
-	i+=2;
-	
-	
+	i += 2;
 	return (0);
 }
 
@@ -37,12 +35,11 @@ int		check_name_comment(int fd)
 {
 	char		*line;
 	char		*tmp;
-	static	int	name = 0;
-	static	int	comment = 0;
+	static int	name = 0;
+	static int	comment = 0;
 
 	while ((name == 0 || comment == 0) && get_next_line(fd, &line))
 	{
-		//tmp = ft_strtrim(line);
 		if (check_format(tmp, NAME_CMD_STRING, PROG_NAME_LENGTH))
 		{
 			if (name != 0)

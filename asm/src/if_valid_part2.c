@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   if_valid_part2.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 16:19:52 by baalbane          #+#    #+#             */
+/*   Updated: 2017/04/04 16:21:11 by baalbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-t_label	*read_label_function(int fd)
+t_label		*read_label_function(int fd)
 {
 	t_label	*start;
 	t_label *actu;
@@ -22,7 +33,7 @@ t_label	*read_label_function(int fd)
 	return (start);
 }
 
-int		is_label(char *line)
+int			is_label(char *line)
 {
 	int i;
 
@@ -36,9 +47,10 @@ int		is_label(char *line)
 	return (0);
 }
 
-t_label	*new_label(t_label *label, char *line)
+t_label		*new_label(t_label *label, char *line)
 {
 	t_label	*new;
+
 	new = malloc(sizeof(t_label));
 	new->function = NULL;
 	new->next = NULL;
@@ -51,7 +63,7 @@ t_label	*new_label(t_label *label, char *line)
 	return (new);
 }
 
-int		new_function(t_label *label, char *line)
+int			new_function(t_label *label, char *line)
 {
 	t_function	*function;
 
@@ -65,7 +77,7 @@ int		new_function(t_label *label, char *line)
 	return (1);
 }
 
-t_function *new_lst_function(char *line)
+t_function	*new_lst_function(char *line)
 {
 	t_function *new;
 
@@ -76,5 +88,3 @@ t_function *new_lst_function(char *line)
 	new->ODC = 0;
 	return (new);
 }
-
-

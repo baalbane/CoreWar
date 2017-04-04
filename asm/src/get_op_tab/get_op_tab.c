@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_op_tab.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 16:14:27 by baalbane          #+#    #+#             */
+/*   Updated: 2017/04/04 16:15:17 by baalbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/asm.h"
 
 //ARGS_TYPE T_DIR:2,T_IND:3,T_REG:5
 
-t_op	*get_op_tab()
+t_op	*get_op_tab(void)
 {
 	t_op	*start;
 
@@ -20,7 +31,7 @@ t_op	*get_op_tab()
 	return (start);
 }
 
-t_op	*get_ld()
+t_op	*get_ld(void)
 {
 	t_op	*new;
 
@@ -38,7 +49,7 @@ t_op	*get_ld()
 	return (new);
 }
 
-t_op	*get_st()
+t_op	*get_st(void)
 {
 	t_op	*new;
 
@@ -56,7 +67,7 @@ t_op	*get_st()
 	return (new);
 }
 
-t_op	*get_add()
+t_op	*get_add(void)
 {
 	t_op	*new;
 
@@ -75,7 +86,7 @@ t_op	*get_add()
 	return (new);
 }
 
-t_op	*get_sub()
+t_op	*get_sub(void)
 {
 	t_op	*new;
 

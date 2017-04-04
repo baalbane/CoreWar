@@ -6,7 +6,7 @@
 /*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 14:17:35 by baalbane          #+#    #+#             */
-/*   Updated: 2016/12/09 15:19:40 by baalbane         ###   ########.fr       */
+/*   Updated: 2017/04/04 16:30:08 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 int		ft_isspace(char c)
 {
 	if (c == ' ' || c == '\n' || c == '\v' || c == '\r'
-		|| c == '\f' || c == '\t')
+	|| c == '\f' || c == '\t')
 		return (1);
 	return (0);
 }
-
 
 int		ft_strlen(const char *s)
 {
@@ -52,7 +51,6 @@ int		tmp_name_strchr(char *line, char a)
 	return (0);
 }
 
-
 char	*take_label_name(t_label *new, char *line)
 {
 	char	*name;
@@ -60,7 +58,7 @@ char	*take_label_name(t_label *new, char *line)
 	int		i;
 
 	j = 1;
-	while (line[j-1] != ':')
+	while (line[j - 1] != ':')
 		j++;
 	i = j;
 	name = malloc(sizeof(char*) * (j + 1));

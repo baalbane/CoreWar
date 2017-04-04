@@ -45,7 +45,7 @@ typedef struct		s_op
 
 
 int					check_name_comment(int fd, char **name_str, char **comment_str);
-int					check_format(char *line, char *str, int len);
+int					check_form(char *line, char *str, int len);
 int					parser(char *file);
 char				*take_new_line(char *line);
 

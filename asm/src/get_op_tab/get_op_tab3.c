@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_op_tab3.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 16:16:00 by baalbane          #+#    #+#             */
+/*   Updated: 2017/04/04 16:16:24 by baalbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/asm.h"
 
-t_op	*get_sti()
+t_op	*get_sti(void)
 {
 	t_op	*new;
 
@@ -20,7 +31,7 @@ t_op	*get_sti()
 	return (new);
 }
 
-t_op	*get_fork()
+t_op	*get_fork(void)
 {
 	t_op	*new;
 
@@ -37,7 +48,7 @@ t_op	*get_fork()
 	return (new);
 }
 
-t_op	*get_lld()
+t_op	*get_lld(void)
 {
 	t_op	*new;
 
@@ -55,7 +66,7 @@ t_op	*get_lld()
 	return (new);
 }
 
-t_op	*get_lldi()
+t_op	*get_lldi(void)
 {
 	t_op	*new;
 
@@ -74,7 +85,7 @@ t_op	*get_lldi()
 	return (new);
 }
 
-t_op	*get_lfork()
+t_op	*get_lfork(void)
 {
 	t_op	*new;
 

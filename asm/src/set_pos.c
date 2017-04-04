@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_pos.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 16:28:23 by baalbane          #+#    #+#             */
+/*   Updated: 2017/04/04 16:28:55 by baalbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/asm.h"
 
 int		set_pos(t_label *start, int pos)
 {
 	t_function *tmp;
-	
+
 	while (start != NULL)
 	{
 		start->pos = pos;
@@ -20,11 +31,11 @@ int		set_pos(t_label *start, int pos)
 	return (pos);
 }
 
-int	add_pos(t_function *function)
+int		add_pos(t_function *function)
 {
 	int				i;
 	unsigned char	var;
-	
+
 	var = (unsigned char)function->ODC;
 	i = 1;
 	if (function->optab->octet_codage == 1)

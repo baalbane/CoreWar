@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_op_tab2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 16:15:54 by baalbane          #+#    #+#             */
+/*   Updated: 2017/04/04 16:15:57 by baalbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/asm.h"
 
-t_op	*get_and()
+t_op	*get_and(void)
 {
 	t_op	*new;
 
@@ -20,7 +31,7 @@ t_op	*get_and()
 	return (new);
 }
 
-t_op	*get_or()
+t_op	*get_or(void)
 {
 	t_op	*new;
 
@@ -39,7 +50,7 @@ t_op	*get_or()
 	return (new);
 }
 
-t_op	*get_xor()
+t_op	*get_xor(void)
 {
 	t_op	*new;
 
@@ -58,7 +69,7 @@ t_op	*get_xor()
 	return (new);
 }
 
-t_op	*get_zjmp()
+t_op	*get_zjmp(void)
 {
 	t_op	*new;
 
@@ -75,7 +86,7 @@ t_op	*get_zjmp()
 	return (new);
 }
 
-t_op	*get_ldi()
+t_op	*get_ldi(void)
 {
 	t_op	*new;
 

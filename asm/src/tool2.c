@@ -6,7 +6,7 @@
 /*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 14:17:35 by baalbane          #+#    #+#             */
-/*   Updated: 2016/12/09 15:19:40 by baalbane         ###   ########.fr       */
+/*   Updated: 2017/04/04 16:31:34 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ unsigned int	b_swap_32(unsigned int value)
 	return (b_swap_16(value & 0xffff) << 16) | (b_swap_16(value >> 16));
 }
 
-int		add_function2(t_label *new, char *line, int j)
+int				add_function2(t_label *new, char *line, int j)
 {
 	int		i;
 	char	*function;
@@ -39,11 +39,11 @@ int		add_function2(t_label *new, char *line, int j)
 		function = take_new_line(function);
 		new_function(new, function);
 	}
-	free (line);
+	free(line);
 	return (1);
 }
 
-char	*ft_strdup(const char *s1)
+char			*ft_strdup(const char *s1)
 {
 	int		i;
 	char	*s2;
@@ -61,15 +61,12 @@ char	*ft_strdup(const char *s1)
 	return (s2);
 }
 
-int	ft_namecmp(char *line, char *name, int *i)
+int				ft_namecmp(char *line, char *name, int *i)
 {
 	*i = 0;
-
 	while (line[*i] == name[*i])
 		(*i)++;
 	if (name[*i] == '\0' && line[*i] == ' ')
 		return (1);
 	return (0);
 }
-
-

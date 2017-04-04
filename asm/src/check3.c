@@ -1,64 +1,79 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check3.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 16:11:41 by baalbane          #+#    #+#             */
+/*   Updated: 2017/04/04 17:03:56 by baalbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/asm.h"
 
-int		check_name_comment(int fd, char **name_str, char **comment_str)
+static int	verif_name_comment(int *name, char **str, char *line)
 {
-	char		*line;
-	static	int	name = 0;
-	static	int	comment = 0;
-
-	while ((name == 0 || comment == 0) && get_next_line(fd, &line))
-	{
-		line = take_new_line(line);
-		if (line != NULL && check_format(line, NAME_CMD_STRING, PROG_NAME_LENGTH))
-		{
-			if (name != 0)
-				return (0);
-			name = 1;
-			*name_str = line;
-		}
-		else if (line != NULL && check_format(line, COMMENT_CMD_STRING, COMMENT_LENGTH))
-		{
-			if (comment != 0)
-				return (0);
-			comment = 1;
-			*comment_str = line;
-		}
-		else if (line != NULL)
-		{
-			free(line);
-			return (0);
-		}
-	}
+	if (*name != 0)
+		return (0);
+	*name = 1;
+	*str = line;
 	return (1);
 }
 
-int		check_format(char *line, char *str, int len)
+int			check_name_comment(int fd, char **name_str, char **comment_str)
+{
+	char		*s;
+	static	int	name = 0;
+	static	int	comment = 0;
+
+	while ((name == 0 || comment == 0) && get_next_line(fd, &s) > 0)
+	{
+		s = take_new_line(s);
+		if (s != NULL && check_form(s, NAME_CMD_STRING, PROG_NAME_LENGTH))
+		{
+			if (!verif_name_comment(&name, name_str, s))
+				return (0);
+		}
+		else if (s != NULL && check_form(s, COMMENT_CMD_STRING, COMMENT_LENGTH))
+		{
+			if (!verif_name_comment(&comment, comment_str, s))
+				return (0);
+		}
+		else if (s != NULL)
+		{
+			free(s);
+			return (0);
+		}
+	}
+	return (name == 1 && comment == 1 ? 1 : 0);
+}
+
+int			check_form(char *line, char *str, int len)
 {
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	while (line[i] != '\0' && str[i] != '\0' && line[i] == str[i])
 		i++;
 	if (str[i] != '\0')
 		return (0);
-	if (line[i] != ' ' || line[i+1] != '"')
+	if (line[i] != ' ' || line[i + 1] != '"')
 	{
 		printf("Error: No name after \".name\". \033[41m\033[33m<--CARE PRINTF\033[0m\n");
 		return (0);
 	}
-	i+=2;
+	i += 2;
 	j = 0;
-	while (line[i+j] != '\0' && line[i+j] != '"')
+	while (line[i + j] != '\0' && line[i + j] != '"')
 		j++;
-	if (line[i+j] != '"' || line[i+j+1] != '\0' || j-1 > len)
+	if (line[i + j] != '"' || line[i + j + 1] != '\0' || j - 1 > len)
 		return (0);
-	
-	
 	return (1);
 }
 
-int		set_opcode(int type, t_function *function, int nbrarg)
+int			set_opcode(int type, t_function *function, int nbrarg)
 {
 	if (nbrarg == 0)
 		function->ODC += type * 64;
