@@ -6,7 +6,7 @@
 /*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/04 16:11:41 by baalbane          #+#    #+#             */
-/*   Updated: 2017/04/04 17:03:56 by baalbane         ###   ########.fr       */
+/*   Updated: 2017/04/06 15:02:51 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,12 @@ int			check_form(char *line, char *str, int len)
 	if (str[i] != '\0')
 		return (0);
 	if (line[i] != ' ' || line[i + 1] != '"')
-	{
-		printf("Error: No name after \".name\". \033[41m\033[33m<--CARE PRINTF\033[0m\n");
 		return (0);
-	}
 	i += 2;
 	j = 0;
 	while (line[i + j] != '\0' && line[i + j] != '"')
 		j++;
-	if (line[i + j] != '"' || line[i + j + 1] != '\0' || j - 1 > len)
+	if (line[i + j] != '"' || line[i + j + 1] != '\0' || j - 1 >= len)
 		return (0);
 	return (1);
 }
@@ -83,5 +80,11 @@ int			set_opcode(int type, t_function *function, int nbrarg)
 		function->ODC += type * 4;
 	else
 		function->ODC += type;
+	return (1);
+}
+
+int			ft_putstr(char *str, int fd)
+{
+	write(fd, str, ft_strlen(str));
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 14:17:35 by baalbane          #+#    #+#             */
-/*   Updated: 2017/04/04 16:30:08 by baalbane         ###   ########.fr       */
+/*   Updated: 2017/04/06 15:13:44 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ char	*take_label_name(t_label *new, char *line)
 		name[j] = line[j];
 	if (line[i] != '\0')
 		add_function2(new, line, i);
+	else
+		free(line);
 	return (name);
 }

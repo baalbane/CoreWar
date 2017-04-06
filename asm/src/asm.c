@@ -6,7 +6,7 @@
 /*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 15:46:40 by baalbane          #+#    #+#             */
-/*   Updated: 2017/03/31 15:47:50 by baalbane         ###   ########.fr       */
+/*   Updated: 2017/04/06 15:12:22 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ int		main(int ac, char **av)
 {
 	if (ac <= 1)
 	{
-		printf("Error: No input file. <--CARE PRINTF\n");
+		ft_putstr("Error: No input file.\n", 2);
 		return (0);
 	}
-	if (!parser(av[1]))
+	if (parser(av[1]) == -1)
 	{
-		printf("Error: Wrong input file. <--CARE PRINTF\n");
+		ft_putstr("Error: Wrong input file.\n", 2);
 		return (0);
 	}
+	while (1)
+	{;}
 	return (0);
 }

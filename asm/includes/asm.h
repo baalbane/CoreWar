@@ -1,25 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   asm.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/06 15:20:26 by baalbane          #+#    #+#             */
+/*   Updated: 2017/04/06 15:20:28 by baalbane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ASM_H
 # define ASM_H
 
-#include "define.h"
+# include "define.h"
 
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef char		t_arg_type;
 
-
 typedef struct		s_function
 {
-	int					ODC;
+	int					odc;
 	int					pos;
 	char				*line;
 	struct s_op			*optab;
 	struct s_function	*next;
 }					t_function;
-
 
 typedef struct		s_label
 {
@@ -28,7 +38,6 @@ typedef struct		s_label
 	struct s_function	*function;
 	struct s_label		*next;
 }					t_label;
-
 
 typedef struct		s_op
 {
@@ -43,12 +52,11 @@ typedef struct		s_op
 	struct s_op		*next;
 }					t_op;
 
-
-int					check_name_comment(int fd, char **name_str, char **comment_str);
+int					check_name_comment(int fd, char **name_str,
+						char **comment_str);
 int					check_form(char *line, char *str, int len);
 int					parser(char *file);
 char				*take_new_line(char *line);
-
 
 int					ft_isspace(char c);
 int					ft_strlen(const char *s);
@@ -60,7 +68,7 @@ unsigned short		b_swap_16(unsigned short value);
 unsigned int		b_swap_32(unsigned int value);
 int					add_function2(t_label *new, char *line, int j);
 char				*ft_strdup(const char *s1);
-
+int					ft_putstr(char *str, int fd);
 
 int					ft_strlenchr(char *buffer, int a);
 int					saveline(char *buffer, char **line, char **buf);
@@ -68,9 +76,12 @@ char				*ft_strjoin2(char *str, char *str2);
 int					addbuff(char **buffer, int const fd, int *ret);
 int					get_next_line(int const fd, char **line);
 
-int					check_all_label(t_label *label, t_op *optab, t_label *start);
-int					check_all_function(t_function *function, t_op *optab, t_label *lab);
-int					check_arg(t_function *function, t_label *label, int *i, int nbrarg);
+int					check_all_label(t_label *label, t_op *optab,
+						t_label *start);
+int					check_all_function(t_function *function, t_op *optab,
+						t_label *lab);
+int					check_arg(t_function *function, t_label *label, int *i,
+						int nbrarg);
 int					set_opcode(int type, t_function *function, int nbrarg);
 t_op				*get_good_optab(t_function *function, t_op *optab, int *i);
 int					ft_namecmp(char *line, char *name, int *i);
@@ -84,20 +95,26 @@ t_label				*read_label_function(int fd);
 int					is_label(char *line);
 t_label				*new_label(t_label *label, char *line);
 int					new_function(t_label *label, char *line);
-t_function 			*new_lst_function(char *line);
+t_function			*new_lst_function(char *line);
 
-int					write_file(t_label *start, char *name, char *comment, char *file);
+int					write_file(t_label *start, char *name, char *comment,
+						char *file);
 char				*set_cor_name(char *file);
 
 int					write_reg(int fd, char *str, int *i);
 int					write_dir(int fd, t_function *function, int *i);
-int					write_dir_label(int fd, t_function *function, int *i, t_label *start);
+int					write_dir_label(int fd, t_function *function, int *i,
+						t_label *start);
 int					write_nb(unsigned int nb, int fd, int size);
 int					write_ind(int fd, char *str, int *i);
 int					take_pos_label(t_label *label, char *line, int *i);
 
 int					set_pos(t_label *start, int pos);
 int					add_pos(t_function *function);
+
+int					free_optab(t_op *optab);
+int					free_label(t_label *label);
+int					free_function(t_function *function);
 
 t_op				*get_op_tab();
 t_op				*get_ld();

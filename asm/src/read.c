@@ -6,7 +6,7 @@
 /*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/04 16:21:22 by baalbane          #+#    #+#             */
-/*   Updated: 2017/04/04 17:04:51 by baalbane         ###   ########.fr       */
+/*   Updated: 2017/04/06 15:13:47 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ static int	parser_2(t_label *start, t_op *optab)
 	while (tmp != NULL)
 	{
 		if (check_all_label(tmp, optab, start) == 0)
-		{
-			printf("FUCKING LABEL ERROR!!\n");
 			return (0);
-		}
 		tmp = tmp->next;
 	}
 	return (1);
@@ -37,19 +34,21 @@ int			parser(char *file)
 	t_label	*start;
 	t_op	*optab;
 
-	if (!(fd = open(file, O_RDONLY)))
-		return (0);
+	if ((fd = open(file, O_RDONLY)) <= 0)
+		return (-1);
 	if (check_name_comment(fd, &name, &comment) == 0)
 	{
-		printf("Error: Name or Commentaire wrong \033[41m\033[33m<--CARE PRINTF\033[0m\n");
+		ft_putstr("Error: wrong \".name\" or \".comment\".\n", 2);
 		return (0);
 	}
 	start = read_label_function(fd);
 	close(fd);
 	optab = get_op_tab();
 	if (!parser_2(start, optab))
-		return (0);
+		return (-1);
 	write_file(start, name, comment, file);
+	free_optab(optab);
+	free_label(start);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/04 16:19:52 by baalbane          #+#    #+#             */
-/*   Updated: 2017/04/04 16:21:11 by baalbane         ###   ########.fr       */
+/*   Updated: 2017/04/06 15:10:19 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ t_label		*read_label_function(int fd)
 			actu = new_label(actu, line);
 		else if (line != NULL)
 			new_function(actu, line);
-		else
-			free(line);
 	}
 	return (start);
 }

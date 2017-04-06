@@ -6,7 +6,7 @@
 /*   By: baalbane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/04 16:31:48 by baalbane          #+#    #+#             */
-/*   Updated: 2017/04/04 16:42:17 by baalbane         ###   ########.fr       */
+/*   Updated: 2017/04/06 15:13:09 by baalbane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static int	write_header(int fd, char *name, char *comment, int size)
 	while (i - 10 <= COMMENT_LENGTH + 1)
 		header.comment[(i++) - 10] = 0;
 	write(fd, &header, sizeof(t_header));
+	free(name);
+	free(comment);
 	return (1);
 }
 
@@ -73,6 +75,7 @@ int			write_file(t_label *start, char *name, char *comment, char *file)
 	size = set_pos(start, 0);
 	file = set_cor_name(file);
 	fd = open(file, O_WRONLY | O_CREAT);
+	free(file);
 	write_header(fd, name, comment, size);
 	tmp_label = start;
 	while (tmp_label != NULL)
@@ -85,6 +88,7 @@ int			write_file(t_label *start, char *name, char *comment, char *file)
 		}
 		tmp_label = tmp_label->next;
 	}
+	ft_putstr("File Created.\n", 1);
 	return (1);
 }
 
@@ -107,7 +111,6 @@ int			take_pos_label(t_label *label, char *line, int *i)
 		}
 		label = label->next;
 	}
-	printf("========\nERROR TAKE POS LABEL, NO LABEL FOUND   <==== PRINTF\n========\n");
 	return (0);
 }
 

@@ -8,7 +8,7 @@ SRC_NAME =	asm.c	tool.c \
 			check2.c write.c  write2.c \
 			get_op_tab/get_op_tab.c get_op_tab/get_op_tab2.c \
 			get_op_tab/get_op_tab3.c get_op_tab/get_op_tab4.c \
-			tool2.c check3.c
+			tool2.c check3.c free_all.c
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
