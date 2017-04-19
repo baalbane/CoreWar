@@ -1,7 +1,0 @@
-.name "zork"
-.comment "I'M ALIIIIVE"
-
-ld		%999999999999999999999999999999999999999999999999999999999999999999, r16
-fork	%:cc_spawn
-
-cc_spawn:
