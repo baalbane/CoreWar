@@ -6,7 +6,7 @@
 #    By: ttridon <ttridon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/17 16:41:46 by ttridon           #+#    #+#              #
-#    Updated: 2017/04/18 20:25:46 by ttridon          ###   ########.fr        #
+#    Updated: 2017/04/19 16:24:43 by baalbane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra
 
 CPPFLAGS = -I includes -I ../ressources/libft/includes
 
-LDFLAGS = -L ../ressources/libft -lncurses
+LDFLAGS = -L ../ressources/libft
 
 LDLIBS = -lft
 

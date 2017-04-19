@@ -6,7 +6,7 @@
 #    By: ttridon <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/24 09:52:44 by ttridon           #+#    #+#              #
-#    Updated: 2016/11/18 13:08:09 by ttridon          ###   ########.fr        #
+#    Updated: 2017/04/19 16:24:29 by baalbane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 
 clean:
 	rm -f $(SRC:.c=.o)
-	rm -rf $(OBJ_PATH) 
+	rm -rf $(OBJ_PATH)
 
 fclean: clean
 	rm -f $(NAME)
